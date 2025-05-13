@@ -151,7 +151,7 @@ setConnectPort() {
 }
 
 setListenPort() {
-    sed -i 's/^Port .*/Port 8888/' /etc/tinyproxy/tinyproxy.conf
+    sed -i 's/^Port .*/Port 80/' /etc/tinyproxy/tinyproxy.conf
 }
 
 startService() {
