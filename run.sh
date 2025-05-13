@@ -150,6 +150,10 @@ setConnectPort() {
     echo "ConnectPort 563" >> $PROXY_CONF	
 }
 
+setListenPort() {
+    sed -i 's/^Port .*/Port 8888/' /etc/tinyproxy/tinyproxy.conf
+}
+
 startService() {
     screenOut "Starting Tinyproxy service..."
     /usr/bin/tinyproxy
@@ -187,7 +191,9 @@ setTimeout
 # Enable log to file
 enableLogFile
 # 추가: Allow HTTPS CONNECT
-setConnectPort
+# Configure tinyproxy settings
+setConnectPort    # 443, 563 포트 CONNECT 허용
+setListenPort     # Proxy 서버가 8888 포트로 리스닝
 # Start Tinyproxy
 startService
 # Tail Tinyproxy log
