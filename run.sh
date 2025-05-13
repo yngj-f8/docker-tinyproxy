@@ -145,6 +145,11 @@ setTimeout() {
     fi
 }
 
+setConnectPort() {
+    echo "ConnectPort 443" >> $PROXY_CONF
+    echo "ConnectPort 563" >> $PROXY_CONF	
+}
+
 startService() {
     screenOut "Starting Tinyproxy service..."
     /usr/bin/tinyproxy
@@ -181,6 +186,8 @@ setFilter
 setTimeout
 # Enable log to file
 enableLogFile
+# 추가: Allow HTTPS CONNECT
+setConnectPort
 # Start Tinyproxy
 startService
 # Tail Tinyproxy log
