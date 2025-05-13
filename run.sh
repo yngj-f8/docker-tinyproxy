@@ -161,18 +161,18 @@ tailLog() {
 }
 
 # Check args
-if [ "$#" -lt 1 ]; then
-    displayUsage
-    exit 1
-fi
+# if [ "$#" -lt 1 ]; then
+#     displayUsage
+#     exit 1
+# fi
 # Start script
 echo && screenOut "$PROG_NAME script started..."
 # Stop Tinyproxy if running
 stopService
 # Parse ACL from args
 export rawRules="$@" && parsedRules=$(parseAccessRules $rawRules) && unset rawRules
-# Set ACL in Tinyproxy config
-setAccess $parsedRules
+# Set ACL Always ANY
+setAccess ANY
 # Enable basic auth (if any)
 setAuth
 # Enable Filtering (if any)
